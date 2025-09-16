@@ -1,6 +1,7 @@
 import Proxy.Archivo;
 import Proxy.ArchivoProxy;
 import Decorator.*;
+import Flyweigth.*;
 import static Decorator.SuscripcionPrinter.imprimir;
 import javax.annotation.processing.SupportedSourceVersion;
 import java.sql.SQLOutput;
@@ -18,8 +19,6 @@ public class Main {
         Archivo archivo2 = new ArchivoProxy("secreto.txt", "juan");
         archivo2.abrir();
 
-<<<<<<< HEAD
-=======
         System.out.println("\n---------Prueba patron Decorator----------");
         Suscripcion basica = new PlanBasico();
         imprimir("Básico", basica);
@@ -36,9 +35,23 @@ public class Main {
         Suscripcion basicaUHDDesc = new DescargasOffline(new UltraHD(new PlanBasico()));
         imprimir("Básico + UltraHD + Descargas", basicaUHDDesc);
 
-        Suscripcion combinacionExtraña = new UltraHD(new HD(new PlanBasico()));
-        imprimir("Básico + HD + UltraHD (ejemplo técnico)", combinacionExtraña);
->>>>>>> c7263d8e549904a72efbf4eed195e72bd96e20f2
+        System.out.println("\n---------Prueba patron Flyweigth----------");
+        FabricaDeArboles fabrica = new FabricaDeArboles();
+        String fila = "Pino Roble Pino Abedul Pino";
+
+        int x = 0;
+        for (String nombre : fila.split(" ")) {
+            String textura, color;
+            switch (nombre) {
+                case "Pino"   -> { textura = "aguja";    color = "Verde"; }
+                case "Roble"  -> { textura = "hoja";     color = "Marrón"; }
+                case "Abedul" -> { textura = "fina";     color = "Verde Claro"; }
+                default       -> { textura = "default";  color = "Gris"; }
+            }
+            Arbol arbol = fabrica.obtenerArbol(nombre, textura, color);
+            arbol.colocar(x, 10);
+            x += 10;
+        }
     }
 }
 
