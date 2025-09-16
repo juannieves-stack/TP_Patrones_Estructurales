@@ -10,5 +10,6 @@ public class Main {
 
         Archivo archivo2 = new ArchivoProxy("secreto.txt", "juan");
         archivo2.abrir();
+
     }
 }
