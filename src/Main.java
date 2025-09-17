@@ -1,10 +1,12 @@
 import Adapter.Libro;
 import Adapter.imprimir;
 import Bridge.*;
+import Composite.ElementoMenu;
 import Facade.TiendaFacade;
 import Proxy.*;
 import Decorator.*;
 import Flyweigth.*;
+import Composite.*;
 import static Decorator.SuscripcionPrinter.imprimir;
 import javax.annotation.processing.SupportedSourceVersion;
 import java.sql.SQLOutput;
@@ -93,6 +95,24 @@ public class Main {
 
         Archivo archivo2 = new ArchivoProxy("secreto.txt", "juan");
         archivo2.abrir();
+
+        System.out.println("\n---------Prueba patron Composite----------");
+
+        ElementoMenu plato1 = new Plato("Milanesa con papas", 2500);
+        ElementoMenu plato2 = new Plato("Ensalada César", 1800);
+        ElementoMenu plato3 = new Plato("Pizza muzzarella", 3000);
+
+        Menu menuInfantil = new Menu("Menú Infantil");
+        menuInfantil.agregar(new Plato("Hamburguesa", 2000));
+        menuInfantil.agregar(new Plato("Papas fritas", 1200));
+
+        Menu menuPrincipal = new Menu("Menú Principal");
+        menuPrincipal.agregar(plato1);
+        menuPrincipal.agregar(plato2);
+        menuPrincipal.agregar(plato3);
+        menuPrincipal.agregar(menuInfantil);
+
+        menuPrincipal.mostrar("");
 
     }
 }
