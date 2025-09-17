@@ -1,6 +1,5 @@
 package Adapter;
 
-import lombok.NoArgsConstructor;
 
 public class imprimir implements ImpresoraPDF{
     private AdapterImpresion adapterImpresion;
